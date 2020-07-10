@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              hintText: 'Ingrese correo',
+              hintText: 'pone ctm correo',
               hintStyle: kHintTextStyle,
             ),
             onChanged: (valor){
