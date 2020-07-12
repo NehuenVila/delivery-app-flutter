@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              hintText: 'pone ctm correo',
+              hintText: 'Ingrese correo',
               hintStyle: kHintTextStyle,
             ),
             onChanged: (valor){
@@ -93,14 +93,11 @@ class _LoginScreenState extends State<LoginScreen> {
               suffixIcon: IconButton(
                 onPressed: (){
                   setState(() {
-                    if(_claveOculta = true){
-                      _claveOculta = false;
-                    }if(_claveOculta = false){
-                      _claveOculta = true;
-                    }
+                    _claveOculta = !_claveOculta;
                   });
                 },
                 icon: Icon(Icons.remove_red_eye),
+                color: Colors.white,
               ),
               hintText: 'Ingrese contraseña',
               hintStyle: kHintTextStyle,
@@ -124,33 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 
-  Widget _buildSeePassCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Switch(
-              value: _swichData,
-//              colo: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _swichData = value;
-                  _claveOculta = !value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Mostrar contraseña',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildForgotPasswordBtn() {
     return Container(
@@ -378,14 +348,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                      Row(
-                        children: <Widget>[
-//                          _buildSeePassCheckbox(),
-                          SizedBox(width: 10.0),
-                          _buildForgotPasswordBtn(),
-                        ],
-                      ),
-                      SizedBox(height: 5.0),
+                     _buildForgotPasswordBtn(),
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),

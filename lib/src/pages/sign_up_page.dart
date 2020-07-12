@@ -116,6 +116,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 Icons.lock,
                 color: Colors.white,
               ),
+              suffixIcon: IconButton(
+                onPressed: (){
+                  setState(() {
+                    _claveOculta = !_claveOculta;
+                  });
+                },
+                icon: Icon(Icons.remove_red_eye),
+                color: Colors.white,
+              ),
               hintText: 'Ingrese contraseña',
               hintStyle: kHintTextStyle,
             ),
@@ -133,33 +142,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildSeePassCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Switch(
-              value: _swichData,
-//              colo: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _swichData = value;
-                  _claveOculta = !value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Mostrar contraseña',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
 
 
   Widget _buildLoginBtn() {
@@ -271,8 +253,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                      SizedBox(height: 5.0),
-                      _buildSeePassCheckbox(),
                       SizedBox(height: 15.0),
                       _buildLoginBtn(),
                     ],
