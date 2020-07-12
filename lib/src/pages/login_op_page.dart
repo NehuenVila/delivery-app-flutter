@@ -91,16 +91,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
               ),
               suffixIcon: IconButton(
+
+                color: Colors.white,
                 onPressed: (){
                   setState(() {
                     _claveOculta = !_claveOculta;
                   });
                 },
                 icon: Icon(Icons.remove_red_eye),
-                color: Colors.white,
               ),
               hintText: 'Ingrese contraseña',
               hintStyle: kHintTextStyle,
+//              errorText: ''
             ),
             onChanged: (valor){
               setState(() {
@@ -256,7 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _buildSocialBtn(
                 () => print('Login with Google'),
             AssetImage(
-              'assets/logos/google.jpg',
+              'assets/logos/google_icon.png',
             ),
           ),
         ],
@@ -327,12 +329,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
+                    horizontal: 30.0,
+                    vertical: 30,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      SizedBox(height: 40.0),
                       Text(
                         'Iniciar sesion',
                         style: TextStyle(
@@ -344,9 +347,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 30.0),
                       _buildEmailTF(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
+                      SizedBox(height: 30.0),
                       _buildPasswordTF(),
                      _buildForgotPasswordBtn(),
                       _buildRememberMeCheckbox(),
