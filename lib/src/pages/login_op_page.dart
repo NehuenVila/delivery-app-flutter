@@ -13,6 +13,13 @@ class _LoginScreenState extends State<LoginScreen> {
   String _clave = '1234';
   bool _claveCorrecta = false;
   bool _usuarioCorrecto = false;
+
+  bool _claveOculta = true;
+  bool _swichData = false;
+
+  final _claveTC = TextEditingController();
+  final _userTC = TextEditingController();
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: _userTC,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -69,7 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            obscureText: true,
+            controller: _claveTC,
+            obscureText: _claveOculta,
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -80,6 +89,18 @@ class _LoginScreenState extends State<LoginScreen> {
               prefixIcon: Icon(
                 Icons.lock,
                 color: Colors.white,
+              ),
+              suffixIcon: IconButton(
+                onPressed: (){
+                  setState(() {
+                    if(_claveOculta = true){
+                      _claveOculta = false;
+                    }if(_claveOculta = false){
+                      _claveOculta = true;
+                    }
+                  });
+                },
+                icon: Icon(Icons.remove_red_eye),
               ),
               hintText: 'Ingrese contraseña',
               hintStyle: kHintTextStyle,
@@ -94,6 +115,40 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ],
+    );
+  }
+
+  void clearTextInput(TextEditingController txtcon){
+
+    txtcon.clear();
+
+  }
+
+  Widget _buildSeePassCheckbox() {
+    return Container(
+      height: 20.0,
+      child: Row(
+        children: <Widget>[
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.white),
+            child: Switch(
+              value: _swichData,
+//              colo: Colors.green,
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  _swichData = value;
+                  _claveOculta = !value;
+                });
+              },
+            ),
+          ),
+          Text(
+            'Mostrar contraseña',
+            style: kLabelStyle,
+          ),
+        ],
+      ),
     );
   }
 
@@ -146,8 +201,12 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () {
           print('Login Button Pressed');
+          clearTextInput(_claveTC);
           if(_claveCorrecta && _usuarioCorrecto){
             Navigator.pushNamed(context, '/p');
+            clearTextInput(_userTC);
+          }else{
+            print('datos incorrectos');
           }
         }, 
         padding: EdgeInsets.all(15.0),
@@ -319,7 +378,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
+                      Row(
+                        children: <Widget>[
+//                          _buildSeePassCheckbox(),
+                          SizedBox(width: 10.0),
+                          _buildForgotPasswordBtn(),
+                        ],
+                      ),
+                      SizedBox(height: 5.0),
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
