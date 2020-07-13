@@ -15,10 +15,19 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _usuarioCorrecto = false;
 
   bool _claveOculta = true;
-  bool _swichData = false;
 
   final _claveTC = TextEditingController();
   final _userTC = TextEditingController();
+
+  //para ocultar y mostrar widget
+  bool _isVisible = false;
+
+  void clearTextInput(TextEditingController txtcon){
+
+    txtcon.clear();
+
+  }
+
 
   Widget _buildEmailTF() {
     return Column(
@@ -99,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 icon: Icon(Icons.remove_red_eye),
                 color: Colors.white,
               ),
-              hintText: 'Ingrese contraseña',
+              hintText: "Ingrese contraseña",
               hintStyle: kHintTextStyle,
             ),
             onChanged: (valor){
@@ -115,16 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void clearTextInput(TextEditingController txtcon){
-
-    txtcon.clear();
-
-  }
-
-
   Widget _buildForgotPasswordBtn() {
     return Container(
-      alignment: Alignment.centerRight,
+      alignment: Alignment.topRight,
       child: FlatButton(
         onPressed: () => print('Forgot Password Button Pressed'),
         padding: EdgeInsets.only(right: 0.0),
@@ -170,12 +172,17 @@ class _LoginScreenState extends State<LoginScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
+          setState(() {
+
+          });
           print('Login Button Pressed');
           clearTextInput(_claveTC);
           if(_claveCorrecta && _usuarioCorrecto){
             Navigator.pushNamed(context, '/p');
             clearTextInput(_userTC);
+            _isVisible = false;
           }else{
+            _isVisible = true;
             print('datos incorrectos');
           }
         }, 
@@ -328,7 +335,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   physics: AlwaysScrollableScrollPhysics(),
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
-                    vertical: 120.0,
+                    vertical: 100.0,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -348,7 +355,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                     _buildForgotPasswordBtn(),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: <Widget>[
+                         Visibility(
+                           visible: _isVisible,
+                           child: Text(
+                               'Datos incorrecto',//Cuidado con cambiar el texto, tambien cambia el width
+                             style: TextStyle(
+                               color: Colors.red
+                             ),
+                           ),
+                         ),
+//                         SizedBox(width: _auxPass),
+                         _buildForgotPasswordBtn(),
+                       ],
+                     ),
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
