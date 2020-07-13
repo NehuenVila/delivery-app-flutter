@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
             onChanged: (valor){
               setState(() {
                 if(_usuario == valor){
-                    _usuarioCorrecto = true;
+                  _usuarioCorrecto = true;
                 }
               });
             },
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
             _isVisible = true;
             print('datos incorrectos');
           }
-        }, 
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -281,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             TextSpan(
               //text: 'Don\'t have an Account? ',
-                text: 'No tienes cuenta?',
+              text: 'No tienes cuenta?',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,
@@ -355,22 +355,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.0,
                       ),
                       _buildPasswordTF(),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: <Widget>[
-                         Visibility(
-                           visible: _isVisible,
-                           child: Text(
-                               'Datos incorrecto',//Cuidado con cambiar el texto, tambien cambia el width
-                             style: TextStyle(
-                               color: Colors.red
-                             ),
-                           ),
-                         ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Visibility(
+                            visible: _isVisible,
+                            child: Text(
+                              'Datos incorrecto',
+                              style: TextStyle(
+                                  color: Colors.red
+                              ),
+                            ),
+                          ),
 //                         SizedBox(width: _auxPass),
-                         _buildForgotPasswordBtn(),
-                       ],
-                     ),
+                          _buildForgotPasswordBtn(),
+                        ],
+                      ),
                       _buildRememberMeCheckbox(),
                       _buildLoginBtn(),
                       _buildSignInWithText(),
