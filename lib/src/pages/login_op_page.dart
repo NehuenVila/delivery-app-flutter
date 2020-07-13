@@ -263,7 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _buildSocialBtn(
                 () => print('Login with Google'),
             AssetImage(
-              'assets/logos/google.jpg',
+              'assets/logos/google_icon.png',
             ),
           ),
         ],
