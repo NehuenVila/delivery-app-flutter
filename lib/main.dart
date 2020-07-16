@@ -1,5 +1,4 @@
 import 'package:delivery_prueba1/src/pages/login_op_page.dart';
-import 'package:delivery_prueba1/src/pages/login_page.dart';
 import 'package:delivery_prueba1/src/pages/principal_page.dart';
 import 'package:delivery_prueba1/src/pages/sign_up_page.dart';
 import 'package:delivery_prueba1/src/pages/user_profile_page.dart';

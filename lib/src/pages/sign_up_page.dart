@@ -9,7 +9,6 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   bool _claveOculta = true;
-  bool _swichData = false;
 
   Widget _buildEmailTF() {
     return Column(
@@ -134,15 +133,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buidTextError(){
-    return Scaffold(
-      body: Center(
-        child: Text('Error usuario incorrecto', style: TextStyle( color: Colors.red),),
-      ),
-    );
-  }
-
-
 
   Widget _buildLoginBtn() {
     return Container(
@@ -172,30 +162,6 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-
-  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 6.0,
-            ),
-          ],
-          image: DecorationImage(
-            image: logo,
-          ),
-        ),
-      ),
-    );
-  }
 
 
   @override
