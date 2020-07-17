@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         //home: HomePage()
-      initialRoute: '/pu',
+      initialRoute: '/p',
       routes: {
         '/': (context) => LoginScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
