@@ -19,7 +19,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 //        color: Colors.lightBlue,
 //      decoration: ,
         padding: EdgeInsets.symmetric(
-          horizontal: 40.0,
+          horizontal: 25.0,
           vertical: 40.0,
         ),
         child: Column(
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           _buildImage(
-                () => print('Login with Facebook'),
+                () => print('Selecciona foto perfil'),
             AssetImage('assets/perfiles/user.png'),
           ),
           Column(
@@ -81,8 +81,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: <Widget>[
           ListTile(
             leading: Icon(LineAwesomeIcons.alternate_pen, color: Colors.blueAccent,),
-            title: Text('Cambiar foto de perfil'),
+            title: Text('Cambiar foto de perfil', ),
             trailing: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent,),
+            onTap: ()=> _alertCambiarFoto(context),
           ),
           Divider(),
           ListTile(
@@ -95,11 +96,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.book_reader, color: Colors.blueAccent,),
             title: Text('Sobre nosotros'),
             trailing: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent,),
+            onTap: () => _alertText(context),
           ),
           Divider(),
           ListTile(
             leading: Icon(LineAwesomeIcons.alternate_sign_out, color: Colors.blueAccent,),
             title: Text('Cerrar sesion'),
+            onTap: (){
+              Navigator.pushNamed(context, '/');
+            },
           )
         ],
       ),
@@ -127,6 +132,62 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void _alertText(BuildContext context){
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context){
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+            ),
+            title: Text('Sobre Nosotros'),
+            content: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempor, tortor id accumsan posuere, tortor nisl interdum metus, et egestas libero ante et nulla. Nam aliquam diam nec libero ultrices, bibendum scelerisque nulla efficitur. Curabitur porta ex vel ante commodo venenatis. Nunc tristique tincidunt urna, vel vestibulum augue placerat consequat.'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempor, tortor id accumsan posuere, tortor nisl interdum metus, et egestas libero ante et nulla. Nam aliquam diam nec libero ultrices, bibendum scelerisque nulla efficitur. Curabitur porta ex vel ante commodo venenatis. Nunc tristique tincidunt urna, vel vestibulum augue placerat consequat.'
+                ''),
+            actions: <Widget>[
+//              FlatButton(
+//                child: Text('Cancelar'),
+//                onPressed: (){
+//                  Navigator.of(context).pop();
+//                },
+//              ),
+              FlatButton(
+                child: Text('ok'),
+                onPressed: () => Navigator.of(context).pop(),
+              )
+            ],
+          );
+        }
+    );
+  }
+
+  void _alertCambiarFoto(BuildContext context){
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context){
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+            ),
+            title: Text('Selecciona imagane de perfil'),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.camera_alt, color: Colors.blueAccent,),
+                onPressed: (){},
+              ),
+              Divider(),
+              IconButton(
+                icon: Icon(Icons.image, color: Colors.blueAccent,),
+                onPressed: (){},
+              )
+            ],
+          );
+        }
     );
   }
 }
