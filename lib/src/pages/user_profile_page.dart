@@ -1,5 +1,6 @@
 
 import 'package:delivery_prueba1/src/entities/usuario.dart';
+import 'package:delivery_prueba1/src/pages/login_op_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -103,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.alternate_sign_out, color: Colors.blueAccent,),
             title: Text('Cerrar sesion'),
             onTap: (){
-              Navigator.pushNamed(context, '/');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
             },
           )
         ],
@@ -156,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 //                },
 //              ),
               FlatButton(
-                child: Text('ok'),
+                child: Text('OK'),
                 onPressed: () => Navigator.of(context).pop(),
               )
             ],

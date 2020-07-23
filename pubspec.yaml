@@ -26,7 +26,8 @@ dependencies:
   line_awesome_flutter: ^1.0.1
   flutter_screenutil: ^1.0.2
   animated_theme_switcher: ^1.0.5
-
+  google_nav_bar: ^2.2.0
+  flutter_swiper: ^1.1.6
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,6 +53,7 @@ flutter:
   assets:
      - assets/logos/
      - assets/perfiles/
+     - assets/ads/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
