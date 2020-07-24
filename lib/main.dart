@@ -1,11 +1,20 @@
+import 'package:delivery_prueba1/src/utils/controller_util.dart';
+import 'package:flutter/material.dart';
 import 'package:delivery_prueba1/src/pages/home_page.dart';
 import 'package:delivery_prueba1/src/pages/login_op_page.dart';
 import 'package:delivery_prueba1/src/pages/tab_navegator.dart';
 import 'package:delivery_prueba1/src/pages/sign_up_page.dart';
 import 'package:delivery_prueba1/src/pages/user_profile_page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
-void main() => runApp(MyApp());
+
+void main() {
+  runApp(
+    Phoenix(
+      child: MyApp(),
+    ),
+  );
+}
 //original
 class MyApp extends StatefulWidget {
   @override
@@ -18,7 +27,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         //home: HomePage()
-      initialRoute: '/',
+      initialRoute: (Controller.login)?"/":"/log",
       routes: {
         '/': (context) => TabPage(),
         '/log': (context) => LoginScreen(),

@@ -1,3 +1,4 @@
+import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_prueba1/src/utils/constants.dart';
@@ -181,6 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushNamed(context, '/');
             clearTextInput(_userTC);
             _isVisible = false;
+            Controller.login = true;
           }else{
             _isVisible = true;
             print('datos incorrectos');

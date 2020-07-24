@@ -1,9 +1,12 @@
 
 import 'package:delivery_prueba1/src/entities/usuario.dart';
 import 'package:delivery_prueba1/src/pages/login_op_page.dart';
+import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -91,6 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.bug, color: Colors.blueAccent,),
             title: Text('Reportar problema'),
             trailing: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent,),
+            onTap: ()=> Phoenix.rebirth(context),
           ),
           Divider(),
           ListTile(
@@ -104,7 +108,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.alternate_sign_out, color: Colors.blueAccent,),
             title: Text('Cerrar sesion'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+//              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              Controller.login = false;
+              Phoenix.rebirth(context);
             },
           )
         ],
