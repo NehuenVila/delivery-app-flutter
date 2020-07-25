@@ -2,6 +2,7 @@ import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_prueba1/src/utils/constants.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -179,10 +180,11 @@ class _LoginScreenState extends State<LoginScreen> {
           print('Login Button Pressed');
           clearTextInput(_claveTC);
           if(_claveCorrecta && _usuarioCorrecto){
-            Navigator.pushNamed(context, '/');
+//            Navigator.pushNamed(context, '/');
             clearTextInput(_userTC);
             _isVisible = false;
             Controller.login = true;
+            Phoenix.rebirth(context);// me parece que esta mal esto
           }else{
             _isVisible = true;
             print('datos incorrectos');
