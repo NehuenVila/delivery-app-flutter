@@ -28,8 +28,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
 //        home: HomePage(),
-      initialRoute: (Controller.login)?'/':'log',
+      initialRoute: '/'/*(Controller.login)?'/':'log'*/,
       routes: getRoutes(),
+
 //      routes: {
 //        '/': (context) => TabPage(),
 //        '/log': (context) => LoginScreen(),

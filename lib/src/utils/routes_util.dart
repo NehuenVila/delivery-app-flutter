@@ -1,3 +1,4 @@
+import 'package:delivery_prueba1/src/pages/categorias_page.dart';
 import 'package:delivery_prueba1/src/pages/home_page.dart';
 import 'package:delivery_prueba1/src/pages/login_op_page.dart';
 import 'package:delivery_prueba1/src/pages/sign_up_page.dart';
@@ -13,5 +14,6 @@ Map<String, WidgetBuilder> getRoutes(){
     'h' : (BuildContext context) => HomePage(),
     's'   : (BuildContext context) => SignUpPage(),
     'pu'   : (BuildContext context) => ProfileScreen(),
+    'ca'   : (BuildContext context) => CategoriasPage(),
   };
 }

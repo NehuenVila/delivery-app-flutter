@@ -86,6 +86,27 @@ class _TabPageState extends State<TabPage> {
       text: 'Usuario',
     ));
   }
+  Future<bool> _onBackPressed()  {
+    return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Desea salir?'),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () => print("asjkasf")/*Navigator.of(context).pop(false)*/,
+            child: Text("NO"),
+          ),
+          FlatButton(
+            onPressed: () => print("sada") /*Navigator.of(context).pop(true)*/,
+            child: Text("SI"),
+          ),
+        ],
+        elevation: 15.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+      ),
+    )?? false;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -145,27 +166,6 @@ class _TabPageState extends State<TabPage> {
     );
   }
 
-  Future<bool> _onBackPressed() {
-    return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Desea salir?'),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text("NO"),
-          ),
-          FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text("SI"),
-          ),
-        ],
-        elevation: 15.0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-      ),
-    ) ??
-        false;
-  }
 
 
 }
