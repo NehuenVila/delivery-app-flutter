@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class AdminTienda extends StatefulWidget {
@@ -33,7 +35,38 @@ class _AdminTiendaState extends State<AdminTienda> {
               ),
             ),
           ),
-          Container()
+          Container(
+            child: _creatTienda(),
+          ),
+//          if (aux) {
+//
+//          }
+        ],
+      ),
+    );
+  }
+
+  Widget _creatTienda() {
+    return Container(
+
+      padding: EdgeInsets.symmetric(
+        horizontal: 25.0,
+        vertical: 120.0,
+      ),
+      child: Column(
+        children: <Widget>[
+          Text('Publica tus productos en nuestra app', style: TextStyle(fontSize: 30,color: Colors.white), textAlign: TextAlign.center,),
+          SizedBox(height: 275,),
+          RaisedButton(
+            onPressed: () {
+              print('Tienda Solicitada');
+            },
+            elevation: 5,
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            color: Colors.blueAccent,
+            child: Text('Solicitar Ahora', style: TextStyle(fontSize: 18,color: Colors.white),),
+          ),
         ],
       ),
     );
