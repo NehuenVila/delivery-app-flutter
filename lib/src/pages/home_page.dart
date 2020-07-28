@@ -24,21 +24,14 @@ class _HomePageState extends State<HomePage> {
               height: double.infinity,
               width: double.infinity,
               decoration: BoxDecoration(
-//              color: Colors.white
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-//                    Colors.blue,
-//                    Colors.blue[400],
-//                    Colors.blue[300],
-//                    Colors.blue[100]
-//                    Color(0xFF398AE5),
                       Color(0xFF478DE0),
                       Color(0xFF61A4F1),
                       Color(0xFF73AEF5),
                       Color(0xFF80AEF5),
-//                    Colors.white,
 
                     ],
                     stops: [ 0.1, 0.46, 0.52, 0.75/*, 1*/],
@@ -201,25 +194,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-//  Future<bool> _onBackPressed(BuildContext context) {
-//    return showDialog(
-//      context: context,
-//      builder: (context) => new AlertDialog(
-//        title: new Text('Desea salir?'),
-//        actions: <Widget>[
-//          FlatButton(
-//            onPressed: () => print ("uwu")/*Navigator.of(context).pop(false)*/,
-//            child: Text("NO"),
-//          ),
-//          FlatButton(
-//            onPressed: () => print ("hola")/*Navigator.of(context).pop(true)*/,
-//            child: Text("SI"),
-//          ),
-//        ],
-//        elevation: 15.0,
-//        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
-//      ),
-//    ) ??
-//        false;
-//  }
 }

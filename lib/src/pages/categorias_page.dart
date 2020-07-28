@@ -11,7 +11,7 @@ class CategoriasPage extends StatelessWidget {
 
  List <Tienda> tiendas = [];
 
- Tienda verduFavio = Tienda("Faviola", "assets/logos/logo.jpg", "de 15 a 19", 2.5,
+ Tienda verduFavio = Tienda( "1" ,"Verduleria Las Bananas del Vila", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
      "frente al messi", "Chew siempre me compra las bananas", "3544410861");
 
 
@@ -48,8 +48,8 @@ class CategoriasPage extends StatelessWidget {
         title: Text(item.nombre),
         leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
-        onTap: () {},
-        contentPadding: EdgeInsets.all(15),
+        onTap: () => Controller.identificadorTienda = item.id,
+        contentPadding: EdgeInsets.all(25),
       );
       listaux..add(widgetTemp)
              ..add(Divider());

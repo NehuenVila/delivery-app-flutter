@@ -1,3 +1,5 @@
+import 'package:delivery_prueba1/src/pages/admin_tienda_page.dart';
+import 'package:delivery_prueba1/src/pages/pedidos_page.dart';
 import 'package:flutter/material.dart';
 
 // TabBar
@@ -126,8 +128,8 @@ class _TabPageState extends State<TabPage> {
             controller: controller,
             children: <Widget>[
               HomePage(),
-              Container(color: Colors.blue,),
-              Container(color: Colors.red,),
+              PedidosPage(),
+              AdminTienda(),
               ProfileScreen()
             ],
           ),

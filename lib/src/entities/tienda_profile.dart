@@ -9,6 +9,6 @@ class Tienda{
   String Descripcion;
   String telefono;
 
-  Tienda( this.nombre, this.logo, this.horario, this.rating,
+  Tienda( this.id, this.nombre, this.logo, this.horario, this.rating,
       this.direccion, this.Descripcion, this.telefono);
 }
