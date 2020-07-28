@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 
 
@@ -19,7 +20,15 @@ class CategoriasPage extends StatelessWidget {
     tiendas.add(verduFavio);
     return Scaffold(
       appBar: AppBar(
-        title: Text(Controller.categoria),
+        leading: BackButton(color: Colors.black,),
+        title: Text(Controller.categoria, style: TextStyle(color: Colors.black)),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: <Widget>[
+          IconButton(icon: Icon(LineAwesomeIcons.search, color: Colors.black,), onPressed: ()=> print (Text('Buscar')))
+        ],
+//        flexibleSpace: ,
       ),
       body: Container(
         child: ListView(
@@ -37,13 +46,13 @@ class CategoriasPage extends StatelessWidget {
     data.forEach((item) {
       final widgetTemp = ListTile(
         title: Text(item.nombre),
-        leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 30,),
-        trailing: Icon(Icons.keyboard_arrow_right),
+        leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,),
+        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
         onTap: () {},
         contentPadding: EdgeInsets.all(15),
       );
       listaux..add(widgetTemp)
-        ..add(Divider());
+             ..add(Divider());
     });
     return listaux;
   }
