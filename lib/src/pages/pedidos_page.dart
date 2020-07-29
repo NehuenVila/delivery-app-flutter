@@ -64,8 +64,8 @@ List<Pedido> pedidos = [];
         subtitle: Text(item.tienda.nombre +" "+ item.fecha),
         leading: CircleAvatar(backgroundImage: AssetImage(item.tienda.logo), radius: 25,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
+        dense: true,
         onTap: (){},
-        contentPadding: EdgeInsets.all(25),
       );
       listaux..add(widgetTemp)
         ..add(Divider());

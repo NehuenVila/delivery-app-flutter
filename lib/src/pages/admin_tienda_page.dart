@@ -38,9 +38,6 @@ class _AdminTiendaState extends State<AdminTienda> {
           Container(
             child: (aux)?_creatTienda():_administrarTienda(),
           ),
-//          if (aux) {
-//
-//          }
         ],
       ),
     );
