@@ -1,3 +1,6 @@
+import 'package:delivery_prueba1/src/entities/pedidos.dart';
+import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
+import 'package:delivery_prueba1/src/entities/usuario.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,10 +11,20 @@ class PedidosPage extends StatefulWidget {
 
 class _PedidosPageState extends State<PedidosPage> {
 
-  bool aux = true;
+List<Pedido> pedidos = [];
+
 
   @override
   Widget build(BuildContext context) {
+
+    Tienda verduFavio = Tienda( "1" ,"Verduleria faviola", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
+        "frente al messi", "Las mejores bananas", "3544410861", "verduleria");
+
+    Usuario usuario = new Usuario('3', 'Nehuen', 'Nehuenvila15@gmail.com');
+
+    Pedido pd = Pedido("2", "25/6/2020", usuario, verduFavio, "2kg banana");
+
+    pedidos.add(pd);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -33,10 +46,30 @@ class _PedidosPageState extends State<PedidosPage> {
               ),
             ),
           ),
-          Container()
+          ListView(
+            children: _listaPedidos(pedidos, context),
+          )
         ],
       ),
     );
   }
 
+  List<Widget> _listaPedidos(List<Pedido> data, BuildContext context){
+    final List<Widget> listaux = [];
+
+
+    data.forEach((item) {
+      final widgetTemp = ListTile(
+        title: Text(item.servicio),
+        subtitle: Text(item.tienda.nombre +" "+ item.fecha),
+        leading: CircleAvatar(backgroundImage: AssetImage(item.tienda.logo), radius: 25,),
+        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
+        onTap: (){},
+        contentPadding: EdgeInsets.all(25),
+      );
+      listaux..add(widgetTemp)
+        ..add(Divider());
+    });
+    return listaux;
+  }
 }

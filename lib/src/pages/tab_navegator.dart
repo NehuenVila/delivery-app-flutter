@@ -95,11 +95,11 @@ class _TabPageState extends State<TabPage> {
         title: new Text('Desea salir?'),
         actions: <Widget>[
           FlatButton(
-            onPressed: () => print("asjkasf")/*Navigator.of(context).pop(false)*/,
+            onPressed: () => Navigator.of(context).pop(false),
             child: Text("NO"),
           ),
           FlatButton(
-            onPressed: () => print("sada") /*Navigator.of(context).pop(true)*/,
+            onPressed: () => Navigator.of(context).pop(true),
             child: Text("SI"),
           ),
         ],

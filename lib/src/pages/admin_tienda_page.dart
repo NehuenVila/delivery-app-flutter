@@ -36,7 +36,7 @@ class _AdminTiendaState extends State<AdminTienda> {
             ),
           ),
           Container(
-            child: _creatTienda(),
+            child: (aux)?_creatTienda():_administrarTienda(),
           ),
 //          if (aux) {
 //
@@ -68,6 +68,18 @@ class _AdminTiendaState extends State<AdminTienda> {
             child: Text('Solicitar Ahora', style: TextStyle(fontSize: 18,color: Colors.white),),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _administrarTienda(){
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 25.0,
+        vertical: 120.0,
+      ),
+      child: Center(
+        child: Text('Administrar Tienda'),
       ),
     );
   }

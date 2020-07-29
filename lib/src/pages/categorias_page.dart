@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
+import 'package:delivery_prueba1/src/pages/tienda_page.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -11,8 +12,8 @@ class CategoriasPage extends StatelessWidget {
 
  List <Tienda> tiendas = [];
 
- Tienda verduFavio = Tienda( "1" ,"Verduleria Las Bananas del Vila", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
-     "frente al messi", "Chew siempre me compra las bananas", "3544410861");
+ Tienda verduFavio = Tienda( "1" ,"Verduleria faviola", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
+     "frente al messi", "Las mejores bananas", "3544410861", "verduleria");
 
 
   @override
@@ -48,7 +49,10 @@ class CategoriasPage extends StatelessWidget {
         title: Text(item.nombre),
         leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
-        onTap: () => Controller.identificadorTienda = item.id,
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => TiendaPage()));
+          Controller.identificadorTienda = item.nombre;
+        },
         contentPadding: EdgeInsets.all(25),
       );
       listaux..add(widgetTemp)
