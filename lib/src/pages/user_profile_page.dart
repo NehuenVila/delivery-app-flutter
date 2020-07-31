@@ -1,11 +1,13 @@
 
+import 'dart:io';
+
 import 'package:delivery_prueba1/src/entities/usuario.dart';
-import 'package:delivery_prueba1/src/pages/login_op_page.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -15,6 +17,9 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
  Usuario usuario = new Usuario('3', 'Nehuen', 'Nehuenvila15@gmail.com');
+
+ static File imageFile;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,10 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               vertical: 10.0,
             ),
           ),
-          _buildImage(
-                () => print('Selecciona foto perfil'),
-            AssetImage('assets/perfiles/user.png'),
-          ),
+          _seleccion(),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -95,6 +97,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget _seleccion(){
+    if(imageFile != null){
+      return _buildImage2(
+            () => print('hola'),
+      );
+    }else{
+      return _buildImage(
+            () => print('Selecciona foto perfil'),
+      );}
+  }
+
   Widget _cardOptions() {
     return Card(
       elevation: 5.0,
@@ -105,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.alternate_pen, color: Colors.blueAccent,),
             title: Text('Cambiar foto de perfil', ),
             trailing: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent,),
-            onTap: ()=> _alertCambiarFoto(context),
+            onTap: ()=> _opcionFoto(context),
           ),
           Divider(),
           ListTile(
@@ -136,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildImage(Function onTap, AssetImage logo) {
+  Widget _buildImage(Function onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -153,12 +166,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
           image: DecorationImage(
-            image: logo,
+            image:  AssetImage('assets/perfiles/user.png'),
           ),
         ),
       ),
     );
   }
+
+ Widget _buildImage2(Function onTap) {
+   return GestureDetector(
+     onTap: onTap,
+     child: Container(
+       height: 110.0,
+       width: 110.0,
+       decoration: BoxDecoration(
+         shape: BoxShape.circle,
+         color: Colors.white,
+         boxShadow: [
+           BoxShadow(
+             color: Colors.black26,
+             offset: Offset(0, 2),
+             blurRadius: 6.0,
+           ),
+         ],
+         image: DecorationImage(
+           image:  FileImage(imageFile),
+         ),
+       ),
+     ),
+   );
+ }
+
 
   void _alertText(BuildContext context){
     showDialog(
@@ -190,31 +228,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  void _alertCambiarFoto(BuildContext context){
-    showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context){
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)
-            ),
-            title: Text('Selecciona imagane de perfil'),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.camera_alt, color: Colors.blueAccent,),
-                onPressed: (){},
-              ),
-              Divider(),
-              IconButton(
-                icon: Icon(Icons.image, color: Colors.blueAccent,),
-                onPressed: (){},
-              )
-            ],
-          );
-        }
-    );
-  }
+ Future<void> _opcionFoto(BuildContext context) {
+   return showDialog(
+       context: context,
+       builder: (BuildContext context) {
+         return AlertDialog(
+             title: Text("From where do you want to take the photo?"),
+             content: SingleChildScrollView(
+               child: ListBody(
+                 children: <Widget>[
+                   GestureDetector(
+                     child: Text("Gallery"),
+                     onTap: () {
+                       _openGallery(context);
+                     },
+                   ),
+                   Padding(padding: EdgeInsets.all(8.0)),
+                   GestureDetector(
+                     child: Text("Camera"),
+                     onTap: () {
+                       _openCamera(context);
+                     },
+                   )
+                 ],
+               ),
+             ));
+       });
+ }
+
+ void _openGallery(BuildContext context) async {
+   var picture = await ImagePicker.pickImage(source: ImageSource.gallery);
+   this.setState(() {
+     imageFile = picture;
+   });
+   Navigator.of(context).pop();
+ }
+
+ void _openCamera(BuildContext context) async {
+   var picture = await ImagePicker.pickImage(source: ImageSource.camera);
+   this.setState(() {
+     imageFile = picture;
+   });
+   Navigator.of(context).pop();
+ }
+
 }
 
 

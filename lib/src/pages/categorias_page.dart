@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
 import 'package:delivery_prueba1/src/pages/tienda_page.dart';
@@ -8,6 +8,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 
 
+// ignore: must_be_immutable
 class CategoriasPage extends StatelessWidget {
 
  List <Tienda> tiendas = [];
