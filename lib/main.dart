@@ -1,4 +1,5 @@
 
+import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:delivery_prueba1/src/utils/routes_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -23,7 +24,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
 //        home: HomePage(),
-      initialRoute: '/'/*(Controller.login)?'/':'log'*/,
+      initialRoute: '/',
+//      initialRoute: (Controller.login)?'/':'log',
       routes: getRoutes(),
 
 //      routes: {

@@ -1,6 +1,7 @@
 import 'package:delivery_prueba1/src/entities/pedidos.dart';
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
 import 'package:delivery_prueba1/src/entities/usuario.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -46,8 +47,26 @@ List<Pedido> pedidos = [];
               ),
             ),
           ),
-          ListView(
-            children: _listaPedidos(pedidos, context),
+          Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 50,
+              horizontal: 10,
+
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Tus Pedidos', style: TextStyle(color: Colors.white, fontSize: 30.0, fontFamily: 'OpenSans'),),
+                SizedBox(height: 10),
+                Divider(),
+                Expanded(
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: _listaPedidos(pedidos, context),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),

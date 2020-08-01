@@ -212,12 +212,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempor, tortor id accumsan posuere, tortor nisl interdum metus, et egestas libero ante et nulla. Nam aliquam diam nec libero ultrices, bibendum scelerisque nulla efficitur. Curabitur porta ex vel ante commodo venenatis. Nunc tristique tincidunt urna, vel vestibulum augue placerat consequat.'
                 ''),
             actions: <Widget>[
-//              FlatButton(
-//                child: Text('Cancelar'),
-//                onPressed: (){
-//                  Navigator.of(context).pop();
-//                },
-//              ),
               FlatButton(
                 child: Text('OK'),
                 onPressed: () => Navigator.of(context).pop(),

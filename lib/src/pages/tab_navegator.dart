@@ -119,7 +119,7 @@ class _TabPageState extends State<TabPage> {
         child: Scaffold(
           extendBody: true,
           body: PageView(
-//          physics: NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             onPageChanged: (page) {
               setState(() {
                 selectedIndex = page;
