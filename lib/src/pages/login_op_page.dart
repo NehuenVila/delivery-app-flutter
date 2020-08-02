@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_prueba1/src/utils/constants.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _usuarioCorrecto = false;
 
   bool _claveOculta = true;
+  IconData _iconPass = LineAwesomeIcons.eye_slash_1;
 
   final _claveTC = TextEditingController();
   final _userTC = TextEditingController();
@@ -105,9 +107,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: (){
                   setState(() {
                     _claveOculta = !_claveOculta;
+                    if(_claveOculta){
+                      _iconPass = LineAwesomeIcons.eye_slash_1;
+                    }else{
+                      _iconPass = LineAwesomeIcons.eye;
+                    }
+
                   });
                 },
-                icon: Icon(Icons.remove_red_eye),
+                icon: Icon(_iconPass),
                 color: Colors.white,
               ),
               hintText: "Ingrese contraseña",
