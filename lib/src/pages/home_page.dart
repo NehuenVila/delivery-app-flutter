@@ -90,7 +90,10 @@ class _HomePageState extends State<HomePage> {
       height: 200,
       child: Swiper(
       itemBuilder: (BuildContext context, int index){
-          return Image.asset(images[index], fit: BoxFit.fill,);
+          return ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(images[index], fit: BoxFit.fill,)
+          );
         },
         itemCount: 3,
         viewportFraction: 0.8,
