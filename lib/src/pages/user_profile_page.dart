@@ -227,19 +227,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
        context: context,
        builder: (BuildContext context) {
          return AlertDialog(
-             title: Text("From where do you want to take the photo?"),
+           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+             title: Text("De donde quiere seleccionar una imagen nueva?"),
              content: SingleChildScrollView(
                child: ListBody(
                  children: <Widget>[
                    GestureDetector(
-                     child: Text("Gallery"),
+                     child: Text("Galeria"),
                      onTap: () {
                        _openGallery(context);
                      },
                    ),
                    Padding(padding: EdgeInsets.all(8.0)),
                    GestureDetector(
-                     child: Text("Camera"),
+                     child: Text("Camara"),
                      onTap: () {
                        _openCamera(context);
                      },
