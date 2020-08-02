@@ -16,12 +16,14 @@ class CategoriasPage extends StatelessWidget {
 
  Tienda verduFavio = Tienda( "1" ,"Verduleria faviola", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
      "frente al messi", "Las mejores bananas", "3544410861", "verduleria");
+ Tienda bananeriaVila = Tienda( "2" ,"Platanos del Naldo", "assets/logos/logo.jpg", "de 08 a 20", 2.5,
+     "Fan de Messi", "Oferta de goles del Chew", "3544410261", "verduleria");
 
 
   @override
   Widget build(BuildContext context) {
     tiendas.add(verduFavio);
-    tiendas.add(verduFavio);
+    tiendas.add(bananeriaVila);
 
 
     return Scaffold(
@@ -71,8 +73,8 @@ class CategoriasPage extends StatelessWidget {
     data.forEach((item) {
       final widgetTemp = ListTile(
         title: Text(item.nombre),
-
-        leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,),
+//        leading: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,),
+        leading: Hero(child: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,), tag: item.id,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
         onTap: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => TiendaPage()));

@@ -50,8 +50,7 @@ List<Pedido> pedidos = [];
           Container(
             padding: EdgeInsets.symmetric(
               vertical: 50,
-              horizontal: 10,
-
+              horizontal: 15,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,9 +59,15 @@ List<Pedido> pedidos = [];
                 SizedBox(height: 10),
                 Divider(),
                 Expanded(
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: _listaPedidos(pedidos, context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: _listaPedidos(pedidos, context),
+                    ),
                   ),
                 ),
               ],
@@ -84,11 +89,36 @@ List<Pedido> pedidos = [];
         leading: CircleAvatar(backgroundImage: AssetImage(item.tienda.logo), radius: 25,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
         dense: true,
-        onTap: (){},
+        onTap: (){
+
+        },
       );
       listaux..add(widgetTemp)
-        ..add(Divider());
+             ..add(Divider());
     });
     return listaux;
   }
+
+//  Widget _buildInfoPedido(BuildContext context) {
+//
+//    showDialog(
+//      context: context,
+//      barrierDismissible: true,
+//      builder: (context){
+//        return Column(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: <Widget>[
+//            CircleAvatar(backgroundImage: AssetImage('assets/logos/banana.jpg'), radius: 25,),
+//            AlertDialog(
+//              shape: RoundedRectangleBorder(
+//                  borderRadius: BorderRadius.circular(10.0)
+//              ),
+//              title: Text('Info del Pedido'),
+//              content: Text('Mas info del pedido'),
+//            ),
+//          ],
+//        );
+//      }
+//    );
+//  }
 }

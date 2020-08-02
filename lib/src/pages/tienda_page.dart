@@ -1,4 +1,5 @@
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
+import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -11,8 +12,13 @@ class TiendaPage extends StatefulWidget {
 
 class _TiendaPageState extends State<TiendaPage> {
 
+  List <Tienda> tiendas = [];
+
   Tienda verduFavio = Tienda( "1" ,"Verduleria faviola", "assets/logos/banana.jpg", "de 15 a 19", 2.5,
       "frente al messi", "Las mejores bananas", "3544410861", "verduleria");
+  Tienda bananeriaVila = Tienda( "2" ,"Platanos del Naldo", "assets/logos/logo.jpg", "de 08 a 20", 2.5,
+      "Fan de Messi", "Oferta de goles del Chew", "3544410261", "verduleria");
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +56,16 @@ class _TiendaPageState extends State<TiendaPage> {
             children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[_buildImage(),],
+                children: <Widget>[
+//                  _buildImage(),
+                  Hero(child: CircleAvatar(backgroundImage: AssetImage(verduFavio.logo), radius: 50,), tag: verduFavio.id,),
+                ],
               ),
               SizedBox(height: 10.0,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[Text(
-                  verduFavio.nombre, style: TextStyle(
+                  Controller.identificadorTienda, style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'OpenSans',
                   fontSize: 25.0,
@@ -101,6 +110,5 @@ class _TiendaPageState extends State<TiendaPage> {
       ),
     );
   }
-
 }
 
