@@ -38,8 +38,7 @@ class _TiendaPageState extends State<TiendaPage> {
                 Color(0xFF73AEF5),
                 Color(0xFF80AEF5),
               ],
-              stops: [ 0.1, 0.46, 0.52, 0.75 /*, 1*/
-              ],
+              stops: [ 0.1, 0.46, 0.52, 0.75],
             ),
           ),
         ),

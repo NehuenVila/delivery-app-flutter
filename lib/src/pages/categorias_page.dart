@@ -1,6 +1,7 @@
 
 
 import 'package:delivery_prueba1/src/entities/tienda_profile.dart';
+import 'package:delivery_prueba1/src/pages/sliver_tienda_page.dart';
 import 'package:delivery_prueba1/src/pages/tienda_page.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -77,7 +78,7 @@ class CategoriasPage extends StatelessWidget {
         leading: Hero(child: CircleAvatar(backgroundImage: AssetImage(item.logo), radius: 25,), tag: item.id,),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blue,),
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TiendaPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => SliverTiendaPage()));
           Controller.identificadorTienda = item.nombre;
         },
         contentPadding: EdgeInsets.all(10),
