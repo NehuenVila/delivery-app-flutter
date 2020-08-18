@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 
 class ProfileScreen extends StatefulWidget {
@@ -19,6 +20,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
  Usuario usuario = new Usuario('3', 'Nehuen', 'Nehuenvila15@gmail.com');
 
  static File imageFile;
+ String url = 'https://jsonplaceholder.typicode.com/todos/1';
+// String url = 'http://10.0.2.2/DeliveryWS/rest/rws/bienvenida';
+ //192.168.0.100 ip localhost:8080
+
+ Future<http.Response> fetchPost() {
+   return http.get(url);
+ }
+
+ Future<String> api() async{
+   var res = await http.get(url);
+   print(res.body);
+ }
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: Icon(LineAwesomeIcons.bug, color: Colors.blueAccent,),
             title: Text('Reportar problema'),
             trailing: Icon(Icons.arrow_forward_ios, color: Colors.blueAccent,),
-            onTap: ()=> Phoenix.rebirth(context),
+            onTap: ()=> api(),
           ),
           Divider(),
           ListTile(
