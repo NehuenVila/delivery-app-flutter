@@ -24,8 +24,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
 //        home: HomePage(),
-      initialRoute: '/',
-//      initialRoute: (Controller.login)?'/':'log',
+//      initialRoute: '/',
+      initialRoute: (Controller.login)?'/':'log',
       routes: getRoutes(),
 
 //      routes: {

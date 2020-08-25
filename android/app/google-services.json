@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "873734156526",
+    "firebase_url": "https://delivery-app-c977f.firebaseio.com",
+    "project_id": "delivery-app-c977f",
+    "storage_bucket": "delivery-app-c977f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873734156526:android:21a2d3f203223e202ac3ff",
+        "android_client_info": {
+          "package_name": "com.example.delivery_prueba1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873734156526-tj10d02jjf52oqovobueov9e4qcr31nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBho6IbbdA3RxzLWiHTr15CDKQFEthHO6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873734156526-tj10d02jjf52oqovobueov9e4qcr31nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
