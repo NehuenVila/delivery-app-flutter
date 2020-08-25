@@ -1,8 +1,10 @@
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:delivery_prueba1/src/utils/constants.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,12 +28,18 @@ class _LoginScreenState extends State<LoginScreen> {
   //para ocultar y mostrar widget
   bool _isVisible = false;
 
-  void clearTextInput(TextEditingController txtcon){
+  //firebase login
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseUser _user;
+  GoogleSignIn _googleSignIn = new GoogleSignIn();
 
-    txtcon.clear();
-
+  Future<void> handleSingIn() async{
+    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
   }
 
+  void clearTextInput(TextEditingController txtcon){
+    txtcon.clear();
+  }
 
   Widget _buildEmailTF() {
     return Column(
