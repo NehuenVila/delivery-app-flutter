@@ -6,6 +6,7 @@ import 'package:delivery_prueba1/src/utils/constants.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -29,12 +30,41 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isVisible = false;
 
   //firebase login
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseUser _user;
-  GoogleSignIn _googleSignIn = new GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> handleSingIn() async{
-    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+  Future<FirebaseUser> _handleSignIn() async {
+    // hold the instance of the authenticated user
+    FirebaseUser user;
+    // flag to check whether we're signed in already
+    bool isSignedIn = await _googleSignIn.isSignedIn();
+    if (isSignedIn) {
+      // if so, return the current user
+      user = await _auth.currentUser;
+    }
+    else {
+      final GoogleSignInAccount googleUser =
+      await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+      // get the credentials to (access / id token)
+      // to sign in via Firebase Authentication
+      final AuthCredential credential =
+      GoogleAuthProvider.getCredential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken
+      );
+      user = (await _auth.signInWithCredential(credential)).user;
+    }
+
+    return user;
+  }
+
+  void onGoogleSignIn(BuildContext context) async {
+    FirebaseUser user = await _handleSignIn();
+    Controller.login = true;
+    Phoenix.rebirth(context);// me parece que esta mal esto
+    print(user.displayName);
   }
 
   void clearTextInput(TextEditingController txtcon){
