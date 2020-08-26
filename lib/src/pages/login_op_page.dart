@@ -6,8 +6,6 @@ import 'package:delivery_prueba1/src/utils/constants.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -30,42 +28,39 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isVisible = false;
 
   //firebase login
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
-  Future<FirebaseUser> _handleSignIn() async {
-    // hold the instance of the authenticated user
-    FirebaseUser user;
-    // flag to check whether we're signed in already
-    bool isSignedIn = await _googleSignIn.isSignedIn();
-    if (isSignedIn) {
-      // if so, return the current user
-      user = await _auth.currentUser;
-    }
-    else {
-      final GoogleSignInAccount googleUser =
-      await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
-      // get the credentials to (access / id token)
-      // to sign in via Firebase Authentication
-      final AuthCredential credential =
-      GoogleAuthProvider.getCredential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken
-      );
-      user = (await _auth.signInWithCredential(credential)).user;
-    }
+  Future<String> signInWithGoogle() async {
+    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+    await googleSignInAccount.authentication;
 
-    return user;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+
+    final UserCredential authResult = await _auth.signInWithCredential(credential);
+    final FirebaseUser user = authResult.user;
+
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await _auth.currentUser;
+    assert(user.uid == currentUser.uid);
+
+    return 'signInWithGoogle succeeded: $user';
   }
 
-  void onGoogleSignIn(BuildContext context) async {
-    FirebaseUser user = await _handleSignIn();
-    Controller.login = true;
-    Phoenix.rebirth(context);// me parece que esta mal esto
-    print(user.displayName);
+  void signOutGoogle() async{
+    await googleSignIn.signOut();
+
+    print("User Sign Out");
   }
+
+
 
   void clearTextInput(TextEditingController txtcon){
     txtcon.clear();
@@ -311,7 +306,10 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           _buildSocialBtn(
-                () => print('Login with Google'),
+                () => signInWithGoogle().whenComplete((){
+                  Controller.login = true;
+                  Phoenix.rebirth(context);// me parece que esta mal esto
+                }),
             AssetImage(
               'assets/logos/google_icon.png',
             ),
