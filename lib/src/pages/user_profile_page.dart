@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_prueba1/src/entities/usuario.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
  Usuario usuario = new Usuario('3', 'Nehuen', 'Nehuenvila15@gmail.com');
+
 
  static File imageFile;
  String url = 'https://jsonplaceholder.typicode.com/todos/1';
