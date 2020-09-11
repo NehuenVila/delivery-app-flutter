@@ -4,12 +4,14 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:delivery_prueba1/src/entities/usuario.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
+import 'package:delivery_prueba1/src/utils/login_state_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 
 class ProfileScreen extends StatefulWidget {
@@ -156,8 +158,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             title: Text('Cerrar sesion'),
             onTap: (){
 //              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-              Controller.login = false;
-              Phoenix.rebirth(context);
+              Provider.of<LoginState>(context).logout();
+              // Phoenix.rebirth(context);
             },
           )
         ],

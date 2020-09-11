@@ -1,4 +1,6 @@
+import 'package:delivery_prueba1/src/pages/tab_navegator.dart';
 import 'package:delivery_prueba1/src/utils/controller_util.dart';
+import 'package:delivery_prueba1/src/utils/login_state_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:delivery_prueba1/src/utils/constants.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -29,35 +32,38 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //firebase login
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseUser _user;
+  bool isSignIn = false;
+  GoogleSignIn _googleSignIn = new GoogleSignIn();
 
-  Future<String> signInWithGoogle() async {
-    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
+  Future<void> handleSignIn() async {
+    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
     await googleSignInAccount.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
+    AuthCredential credential = GoogleAuthProvider.getCredential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken);
 
-    final UserCredential authResult = await _auth.signInWithCredential(credential);
-    final FirebaseUser user = authResult.user;
+    UserCredential result = (await _auth.signInWithCredential(credential));
 
-    assert(!user.isAnonymous);
-    assert(await user.getIdToken() != null);
+    _user = result.user;
+    //print(_user.displayName);
 
-    final FirebaseUser currentUser = await _auth.currentUser;
-    assert(user.uid == currentUser.uid);
-
-    return 'signInWithGoogle succeeded: $user';
+    setState(() {
+      isSignIn = true;
+    });
   }
 
-  void signOutGoogle() async{
-    await googleSignIn.signOut();
 
-    print("User Sign Out");
+  Future<void> gooleSignout() async {
+    await _auth.signOut().then((onValue) {
+      _googleSignIn.signOut();
+      setState(() {
+        isSignIn = true;
+      });
+    });
   }
 
 
@@ -224,8 +230,9 @@ class _LoginScreenState extends State<LoginScreen> {
 //            Navigator.pushNamed(context, '/');
             clearTextInput(_userTC);
             _isVisible = false;
-            Controller.login = true;
-            Phoenix.rebirth(context);// me parece que esta mal esto
+            //Provider.of<LoginState>(context).login();
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TabPage()));
+            // Phoenix.rebirth(context);// me parece que esta mal esto
           }else{
             _isVisible = true;
             print('datos incorrectos');
@@ -306,9 +313,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           _buildSocialBtn(
-                () => signInWithGoogle().whenComplete((){
-                  Controller.login = true;
-                  Phoenix.rebirth(context);// me parece que esta mal esto
+                () => handleSignIn().whenComplete((){
+                  //Provider.of<LoginState>(context).login();
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => TabPage()));
                 }),
             AssetImage(
               'assets/logos/google_icon.png',
@@ -318,7 +325,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
   Widget _buildSignupBtn() {
     return GestureDetector(
       onTap: () {

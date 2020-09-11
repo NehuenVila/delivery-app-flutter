@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getRoutes(){
   return <String, WidgetBuilder>{
-    '/'    : (BuildContext context) => TabPage(),
+    // '/'    : (BuildContext context) => TabPage(),
     'log'  : (BuildContext context) => LoginScreen(),
     'h'    : (BuildContext context) => HomePage(),
     's'    : (BuildContext context) => SignUpPage(),
